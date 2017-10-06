@@ -1,0 +1,21 @@
+{
+    "name": "wbe/loginland",
+    "description": "Login social",
+    "type": "project",
+    "require": {
+        "laravel/socialite": "*",
+        "php": "^5.6 || ^7.0"
+    },
+    "authors": [
+        {
+            "name": "WBE team",
+            "email": "wbe.it.lviv@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Wbe\\Loginland\\": "/src"
+        }
+    },
+    "minimum-stability": "stable"
+}
