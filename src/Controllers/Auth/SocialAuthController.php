@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Wbe\Login\SocialAccountService;
+use Wbe\Loginland\SocialAccountService;
 use Socialite;
 
 class SocialAuthController extends Controller

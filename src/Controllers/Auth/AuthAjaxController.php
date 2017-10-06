@@ -1,6 +1,6 @@
 <?php
 
-namespace Wbe\Login\Controllers\Auth;
+namespace Wbe\Loginland\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
@@ -28,7 +28,7 @@ class AuthAjaxController extends Controller
         $auth = false;
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials, $request->has('remember'))) {
+        if (\Auth::attempt($credentials, $request->has('remember'))) {
             $auth = true; // Success
         }
 
@@ -55,11 +55,11 @@ class AuthAjaxController extends Controller
         if(view()->exist('emails.registration')){
             $view_email  = 'emails.registration';
         }else{
-            $view_email = 'login::emails.registration';
+            $view_email = 'loginland::emails.registration';
         }
 
 
-        if (Auth::loginUsingId($user->id, true)) {
+        if (\Auth::loginUsingId($user->id, true)) {
 
             /////need testing this sheet :)
             Mail::send($view_email, ['user' => $user], function ($message) use ($name, $email) {
@@ -115,7 +115,7 @@ class AuthAjaxController extends Controller
                     if(view()->exist('emails.resetpassword')){
                         $view_reset_pass = 'emails.resetpassword';
                     }else{
-                        $view_reset_pass = 'login::emails.resetpassword';
+                        $view_reset_pass = 'loginland::emails.resetpassword';
                     }
 
 
@@ -124,18 +124,18 @@ class AuthAjaxController extends Controller
                         $message->to($contactemail, $contactfirstname)->subject('Reset Password!');
                     });
                     
-                    return collect(['success', __('login::modalauth.sentEmail')]);
+                    return collect(['success', __('loginland::modalauth.sentEmail')]);
 
                 } else {
                    
-                    return collect(['success', __('login::modalauth.sentEmail')]);
+                    return collect(['success', __('loginland::modalauth.sentEmail')]);
                 }
 
             } else {
-                return collect(['err', __('login::modalauth.user')]);
+                return collect(['err', __('loginland::modalauth.user')]);
             }
         } else {
-            return collect(['err', __('login::modalauth.sentEmail')]);
+            return collect(['err', __('loginland::modalauth.sentEmail')]);
         }
 
     }
@@ -179,7 +179,7 @@ class AuthAjaxController extends Controller
         $user->password = bcrypt($password);
         $user->save();
 
-        Auth::login($user, true);
+        \Auth::login($user, true);
 
         \DB::table('password_resets')->where('token', $token)->delete();
 

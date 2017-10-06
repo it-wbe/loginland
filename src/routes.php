@@ -21,21 +21,21 @@
 ////});
 
 
-Route::get('/home', 'Wbe\Login\Controllers\HomeController@index')->name('home');
+//Route::get('/home', 'Wbe\Login\Controllers\HomeController@index')->name('home');
 //Route::get('/home', function (){dd(Auth::user()); exit;})->name('home');
 //Route::get('/login', 'Wbe\Login\Controllers\LoginController@login')->name('login');
 
-Route::post('/auth/ajax/post', 'Wbe\Login\Controllers\Auth\AuthAjaxController@postLogin');
-Route::post('/auth/ajax/registration', 'Wbe\Login\Controllers\Auth\AuthAjaxController@postRegistration');
-Route::post('/auth/ajax/recovery_pass', 'Wbe\Login\Controllers\Auth\AuthAjaxController@RecoverPassword');
-Route::get('/auth/passwordset/{token}', 'Wbe\Login\Controllers\Auth\AuthAjaxController@resetpass');
-Route::post('/auth/ajax/newpassword/{token}', 'Wbe\Login\Controllers\Auth\AuthAjaxController@newPassword');
+Route::post('/auth/ajax/post', 'Wbe\Loginland\Controllers\Auth\AuthAjaxController@postLogin');
+Route::post('/auth/ajax/registration', 'Wbe\Loginland\Controllers\Auth\AuthAjaxController@postRegistration');
+Route::post('/auth/ajax/recovery_pass', 'Wbe\Loginland\Controllers\Auth\AuthAjaxController@RecoverPassword');
+Route::get('/auth/passwordset/{token}', 'Wbe\Loginland\Controllers\Auth\AuthAjaxController@resetpass');
+Route::post('/auth/ajax/newpassword/{token}', 'Wbe\Loginland\Controllers\Auth\AuthAjaxController@newPassword');
 
-Route::get('/auth/facebook', 'Wbe\Login\Controllers\Auth\SocialAuthController@redirectFacebook');
-Route::get('/callback/facebook', 'Wbe\Login\Controllers\Auth\SocialAuthController@callbackFacebook');
+Route::get('/auth/facebook', 'Wbe\Loginland\Controllers\Auth\SocialAuthController@redirectFacebook');
+Route::get('/callback/facebook', 'Wbe\Loginland\Controllers\Auth\SocialAuthController@callbackFacebook');
 
-Route::get('/auth/vk', 'Wbe\Login\Controllers\Auth\SocialAuthController@redirectVk');
-Route::get('/callback/vk', 'Wbe\Login\Controllers\Auth\SocialAuthController@callbackVk');
+//Route::get('/auth/vk', 'Wbe\Loginland\Controllers\Auth\SocialAuthController@redirectVk');
+//Route::get('/callback/vk', 'Wbe\Loginland\Controllers\Auth\SocialAuthController@callbackVk');
 
-Route::get('/auth/google', 'Wbe\Login\Controllers\Auth\SocialAuthController@redirectGoogle');
-Route::get('/callback/google', 'Wbe\Login\Controllers\Auth\SocialAuthController@callbackGoogle');
+Route::get('/auth/google', 'Wbe\Loginland\Controllers\Auth\SocialAuthController@redirectGoogle');
+Route::get('/callback/google', 'Wbe\Loginland\Controllers\Auth\SocialAuthController@callbackGoogle');

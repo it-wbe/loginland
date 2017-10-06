@@ -15,15 +15,17 @@ class LoginServiceProvider extends ServiceProvider
     {
         // load routes
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
-        $this->loadViewsFrom(__DIR__ . '/views', 'loginlang');
-        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'loginlang');
+        $this->loadViewsFrom(__DIR__ . '/views', 'loginland');
+        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'loginland');
         $this->loadMigrationsFrom(__DIR__ . '/../migrations');
 
         $this->publishes([
-            __DIR__ . '/../public/assets' => public_path('packages/wbe/loginlang/assets'),
+            __DIR__ . '/../public/assets' => public_path('packages/wbe/loginland/assets'),
         ], 'public');
 
-        $this->app['view']->addNamespace('login', base_path() . '/vendor/wbe/loginlang/views');
+        $this->app['view']->addNamespace('loginland', base_path() . '/vendor/wbe/loginland/views');
+
+//        dd($this->app['view']);
     }
 
     /**

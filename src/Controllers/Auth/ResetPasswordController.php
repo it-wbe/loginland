@@ -1,6 +1,6 @@
 <?php
 
-namespace Wbe\Login\Controllers\Auth;
+namespace Wbe\Loginland\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;

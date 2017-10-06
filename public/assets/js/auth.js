@@ -13,8 +13,35 @@ $(function() {
         $('#auth_form').show();
         $('#auth_form_reg').show();
         $('#forget_pass_form').hide();
-  }); 
-    
+  });
+
+
+    $('#btn_facebook').click(function () {
+        FB.login(function (response) {
+            if (response.authResponse) {
+                $.ajax({
+
+
+                    type: "get",
+                    url: "/auth/facebook",
+
+                    data: {'data':JSON.stringify(response)},
+                    success: function(data){
+                        FB.logout(function(){});
+                     },
+                    error:function (data) {
+                      // console.log(data);
+                    },
+                })
+                // window.location = '';
+                FB.logout();
+            } else {
+                // user cancelled login
+            }
+        }, {perms: "email"});
+    });
+
+
   ///////////////////////////REGISTRATION/////////////////////////////////
   // Initialize form validation on the registration form.
   // It has the name attribute "registration"
@@ -71,7 +98,8 @@ $(function() {
                     console.log(err.responseText);
                 },
                 success: function (data) {
-                    alert(11);
+                    // alert(11);
+                    // window.location.replace("/");
                     console.log(data);
                     for (arrayIn in data) {
                         $('#err_req_' + arrayIn).html(data[arrayIn][0]);

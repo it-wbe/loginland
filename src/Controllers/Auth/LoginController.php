@@ -23,7 +23,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        return view('login::auth.login');
+        return view('loginland::auth.login');
     }
 
     /**

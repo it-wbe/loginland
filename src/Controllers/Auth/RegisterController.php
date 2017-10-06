@@ -1,9 +1,9 @@
 <?php
 
-namespace Wbe\Login\Controllers\Auth;
+namespace Wbe\Loginland\Controllers\Auth;
 
 use App\User;
-use Wbe\Login\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
