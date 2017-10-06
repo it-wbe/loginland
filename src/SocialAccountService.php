@@ -1,6 +1,6 @@
 <?php
 
-namespace Wbe\Login;
+namespace Wbe\Loginland;
 
 use Laravel\Socialite\Contracts\User as ProviderUser;
 

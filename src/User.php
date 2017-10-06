@@ -1,6 +1,6 @@
 <?php
 
-namespace Wbe\Login;
+namespace Wbe\Loginland;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;

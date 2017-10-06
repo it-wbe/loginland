@@ -1,9 +1,4 @@
-<!-- Modal -->@if (Auth::guest())
-    <li>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#head_auth">Login</button>
-    </li>
-@endif
-
+<script src="/packages/wbe/login/assets/js/auth.js"></script>
 {{--{!! \Auth::user(); !!}--}}
 <link rel="stylesheet" href="/packages/wbe/login/assets/css/auth.css">
 <div id="head_auth" class="modal fade" role="dialog">
