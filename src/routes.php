@@ -24,7 +24,7 @@
 //Route::get('/home', 'Wbe\Login\Controllers\HomeController@index')->name('home');
 //Route::get('/home', function (){dd(Auth::user()); exit;})->name('home');
 //Route::get('/login', 'Wbe\Login\Controllers\LoginController@login')->name('login');
-
+Route::group(['middleware' => ['web']], function() {
 Route::post('/auth/ajax/post', 'Wbe\Loginland\Controllers\Auth\AuthAjaxController@postLogin');
 Route::post('/auth/ajax/registration', 'Wbe\Loginland\Controllers\Auth\AuthAjaxController@postRegistration');
 Route::post('/auth/ajax/recovery_pass', 'Wbe\Loginland\Controllers\Auth\AuthAjaxController@RecoverPassword');
@@ -39,3 +39,4 @@ Route::get('/callback/facebook', 'Wbe\Loginland\Controllers\Auth\SocialAuthContr
 
 Route::get('/auth/google', 'Wbe\Loginland\Controllers\Auth\SocialAuthController@redirectGoogle');
 Route::get('/callback/google', 'Wbe\Loginland\Controllers\Auth\SocialAuthController@callbackGoogle');
+});
