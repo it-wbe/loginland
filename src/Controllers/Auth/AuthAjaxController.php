@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Mail;
 use URL;
+use Illuminate\Support\Facades\View;
 
 
 class AuthAjaxController extends Controller
@@ -52,7 +53,7 @@ class AuthAjaxController extends Controller
         $email = $data['email'];
         $name = $data['name'];
 
-        if(view()->exist('emails.registration')){
+        if(View::exist('emails.registration')){
             $view_email  = 'emails.registration';
         }else{
             $view_email = 'loginland::emails.registration';
@@ -112,7 +113,7 @@ class AuthAjaxController extends Controller
 
                     \DB::table('password_resets')->insert(['email' => $user->email, 'token' => $token, 'created_at' => \Carbon\Carbon::now()->toDateTimeString()]);
 
-                    if(view()->exist('emails.resetpassword')){
+                    if(View::exist('emails.resetpassword')){
                         $view_reset_pass = 'emails.resetpassword';
                     }else{
                         $view_reset_pass = 'loginland::emails.resetpassword';
