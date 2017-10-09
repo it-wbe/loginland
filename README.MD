@@ -2,13 +2,28 @@ Laravel popup login form with service google facebook integration
 =============
 
 ### Install in Laravel 5.5
-1. Create facebook google oauth connect api keys
 
+1. you need to inser in to console when you are in project folder
+
+```php
+
+php artisan make:auth
+
+```
+
+
+2. Create facebook google oauth connect api keys
+
+```php
+google
 https://console.developers.google.com
+
 facebook
 http://developers.facebook.com
 
-2. add to
+````
+3. add to
+
 ```php
 env 
 SESSION_DOMAIN=<domain_name>
@@ -24,12 +39,15 @@ google_redirect_uri=<http://domain_name>/callback/google
 
 ```
 
-3. Add to config/app.php:
+4. Add to config/app.php:
+
 ```php
 'providers' => [
     Wbe\Loginland\LoginServiceProvider::class
 ```
-4. Add to config/service
+
+5. Add to config/service
+
 ```php
 	
 	'facebook' => [
@@ -46,7 +64,8 @@ google_redirect_uri=<http://domain_name>/callback/google
 ```
 
      
-5. Run into console:
+6. Run into console:
+
 ```ssh
 php artisan vendor:publish --provider="Wbe\Loginland\LoginServiceProvider"
 php artisan migrate
