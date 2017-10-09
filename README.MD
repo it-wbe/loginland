@@ -15,6 +15,13 @@ php artisan make:auth
 2. Create facebook google oauth connect api keys
 
 ```php
+
+You must enable the "Contacts API" and "Google+ API" via the Google API console."
+
+in callback input 
+
+domain_name/callback/google/
+
 google
 https://console.developers.google.com
 
@@ -70,6 +77,12 @@ google_redirect_uri=<http://domain_name>/callback/google
 php artisan vendor:publish --provider="Wbe\Loginland\LoginServiceProvider"
 php artisan migrate
 composer dump-autoload
+```
+
+7. In blade you need put 
+```
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#head_auth">Login\Register</button>
+@include('loginland::auth.authModal')
 ```
 Migrations will create tables and fill it with default data.
 It also contains data insertions into database (like seeding). 

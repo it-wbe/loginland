@@ -1,6 +1,11 @@
+<link rel="stylesheet" href="/packages/wbe/loginland/assets/css/auth.css">
+<link rel="stylesheet" href="/packages/wbe/loginland/assets/css/app.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
+
 <div id="head_auth" class="modal fade" role="dialog">
     <div class="modal-dialog" style="width: 1000px;">
-{!!dump(Auth::user())!!}
+	{{--{!!dump(Auth::user())!!}--}}
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -191,10 +196,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 {{--{!! \Auth::user(); !!}--}}
-<link rel="stylesheet" href="/packages/wbe/loginland/assets/css/auth.css">
-<link rel="stylesheet" href="/packages/wbe/loginland/assets/css/app.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
 
 
 <script>
@@ -228,7 +229,7 @@
                     expiresIn = gup(url, 'expires_in');
                     win.close();
                     validateToken(acToken);
-//                    location.reload();
+                    location.reload();
 
                 }
 

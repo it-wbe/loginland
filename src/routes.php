@@ -24,7 +24,8 @@
 //Route::get('/home', 'Wbe\Login\Controllers\HomeController@index')->name('home');
 //Route::get('/home', function (){dd(Auth::user()); exit;})->name('home');
 //Route::get('/login', 'Wbe\Login\Controllers\LoginController@login')->name('login');
-Route::group(['middleware' => ['web']], function() {
+Route::group(['middleware' => ['web']], function() {	
+	Route::get('logout', ['as' => 'logout', 'uses' => 'Wbe\Login\Controllers\Auth\LoginController@logout'])->name('logout');
 Route::post('/auth/ajax/post', 'Wbe\Loginland\Controllers\Auth\AuthAjaxController@postLogin');
 Route::post('/auth/ajax/registration', 'Wbe\Loginland\Controllers\Auth\AuthAjaxController@postRegistration');
 Route::post('/auth/ajax/recovery_pass', 'Wbe\Loginland\Controllers\Auth\AuthAjaxController@RecoverPassword');
