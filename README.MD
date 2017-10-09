@@ -1,21 +1,54 @@
 Laravel popup login form with service google facebook integration
 =============
 
-### Install in Laravel 5.5 && crud
+### Install in Laravel 5.5
+1. Create facebook google oauth connect api keys
 
-1. Install CRUD  
+https://console.developers.google.com
+facebook
+http://developers.facebook.com
+
+2. add to
+```php
+env 
+SESSION_DOMAIN=<domain_name>
 
 
-2. Add to config/app.php:
+fb_client_id=<facebook client id>
+fb_client_secret=<facebook secret key>
+fb_redirect_uri=<http://domin_name>/callback/facebook
+
+google_client_id=<google client id>
+google_client_secret=<google secret key>
+google_redirect_uri=<http://domain_name>/callback/google
+
+```
+
+3. Add to config/app.php:
 ```php
 'providers' => [
-    Wbe\Login\LoginServiceProvider::class
+    Wbe\Loginland\LoginServiceProvider::class
+```
+4. Add to config/service
+```php
+	
+	'facebook' => [
+        'client_id' => env('fb_client_id'),
+        'client_secret' => env('fb_client_secret'),
+        'redirect' => env('fb_redirect_uri'),
+    ],
+
+    'google' => [
+        'client_id'     => env('google_client_id'),
+        'client_secret' => env('google_client_secret'),
+        'redirect'      => env('google_redirect_uri'),
+    ]
 ```
 
      
-3. Run into console:
+5. Run into console:
 ```ssh
-php artisan vendor:publish --provider="Wbe\Login\LoginServiceProvider"
+php artisan vendor:publish --provider="Wbe\Loginland\LoginServiceProvider"
 php artisan migrate
 composer dump-autoload
 ```
@@ -23,3 +56,11 @@ Migrations will create tables and fill it with default data.
 It also contains data insertions into database (like seeding). 
 
 ---------
+
+Finally, admin url:
+
+http://yourproject.dev/admin/
+
+Login: admin@gmail.com
+
+Pass: 111111
