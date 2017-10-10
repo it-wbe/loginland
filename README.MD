@@ -29,10 +29,10 @@ facebook
 http://developers.facebook.com
 
 ````
-3. add to
+3. add to env 
 
 ```php
-env 
+
 SESSION_DOMAIN=<domain_name>
 
 
@@ -50,7 +50,12 @@ google_redirect_uri=<http://domain_name>/callback/google
 
 ```php
 'providers' => [
-    Wbe\Loginland\LoginServiceProvider::class
+	Laravel\Socialite\SocialiteServiceProvider::class,
+    Wbe\Loginland\LoginServiceProvider::class,
+	
+	
+'aliases' => [
+	'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 ```
 
 5. Add to config/service
