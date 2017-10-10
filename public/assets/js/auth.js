@@ -17,28 +17,29 @@ $(function() {
 
 
     $('#btn_facebook').click(function () {
-        FB.login(function (response) {
-            if (response.authResponse) {
-                $.ajax({
+        var win         =   window.open('/auth/facebook', "facebook", 'width=500, height=300');
+        var a = 0;
+        var pollTimer   =   window.setInterval(function() {
+            try {
+               // console.log(win.document.URL.indexOf(window.location.hostname));
 
+                if(win.document.URL.indexOf(window.location.hostname)==7){
+                    window.clearInterval(pollTimer);
+                    var url =   win.document.URL;
+                    acToken =   gup(url, 'access_token');
+                    tokenType = gup(url, 'token_type');
+                    expiresIn = gup(url, 'expires_in');
+                    win.close();
+                    validateToken(acToken);
+                    location.reload();
 
-                    type: "get",
-                    url: "/auth/facebook",
+                }
 
-                    data: {'data':JSON.stringify(response)},
-                    success: function(data){
-                        FB.logout(function(){});
-                     },
-                    error:function (data) {
-                      // console.log(data);
-                    },
-                })
-                // window.location = '';
-                FB.logout();
-            } else {
-                // user cancelled login
+                a++;
+            } catch(e) {
+                console.log(win.document.URL.indexOf(window.location.hostname));
             }
-        }, {perms: "email"});
+        }, 500);
     });
 
 

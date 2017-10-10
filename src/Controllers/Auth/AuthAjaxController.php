@@ -53,13 +53,11 @@ class AuthAjaxController extends Controller
         $email = $data['email'];
         $name = $data['name'];
 
-        if(View::exist('emails.registration')){
+        if(view()->exists('emails.registration')){
             $view_email  = 'emails.registration';
         }else{
             $view_email = 'loginland::emails.registration';
         }
-
-
         if (\Auth::loginUsingId($user->id, true)) {
 
             /////need testing this sheet :)
@@ -67,6 +65,7 @@ class AuthAjaxController extends Controller
                 $message->from('test@email.com', 'Test name');
                 $message->to($email, $name)->subject('Wellcome!');
             });
+            return '';
         }
     }
 
@@ -113,7 +112,7 @@ class AuthAjaxController extends Controller
 
                     \DB::table('password_resets')->insert(['email' => $user->email, 'token' => $token, 'created_at' => \Carbon\Carbon::now()->toDateTimeString()]);
 
-                    if(View::exist('emails.resetpassword')){
+                    if(view()->exists('emails.resetpassword')){
                         $view_reset_pass = 'emails.resetpassword';
                     }else{
                         $view_reset_pass = 'loginland::emails.resetpassword';
@@ -146,12 +145,18 @@ class AuthAjaxController extends Controller
         if(\Auth::check())return redirect('/');
 
         $searchToken = \DB::table('password_resets')->where('token', $token)->first();
+        if(view()->exists('auth.recoverpass')){
+            $recover_pass_blade = 'auth.recoverpass';
+        }else{
+            $recover_pass_blade = 'loginland::auth.recoverpass';
+        }
+
         if ($searchToken) {
 
-            return view('auth.recoverpass')->with(['token' => $token]);
+            return view($recover_pass_blade)->with(['token' => $token]);
 
         } else {
-            return view('auth.recoverpass')->with(['token' => $token]);
+            return view($recover_pass_blade)->with(['token' => $token]);
         }
 
     }
