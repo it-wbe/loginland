@@ -88,11 +88,3 @@ Migrations will create tables and fill it with default data.
 It also contains data insertions into database (like seeding). 
 
 ---------
-
-Finally, admin url:
-
-http://yourproject.dev/admin/
-
-Login: admin@gmail.com
-
-Pass: 111111
