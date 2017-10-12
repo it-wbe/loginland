@@ -2,17 +2,16 @@
 
 @section('content')
 
-        <div class="modal-dialog" style="max-width: 800px;">
+        <div class="modal-dialog" style="max-width: 800px; z-index:99999;"">
 
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"</h4>
                 </div>
 
                     <h4 style="text-align: center">Password recovery</h4>
-                    <form class="form-horizontal" role="form" name="auth_form_post_recover_pass" id="auth_form_post_recover_pass" method="POST" action="#" data-token = "{{$token}}"  data-errpass = "{{trans('login::modalauth.err_pass')}}" data-errorepassmatch ="{{trans('login::modalauth.match')}}">
+                    <form class="form-horizontal" role="form" name="auth_form_post_recover_pass" id="auth_form_post_recover_pass" method="POST" action="#" data-token = "{{$token}}"  data-errpass = "{{trans('loginland::modalauth.err_pass')}}" data-errorepassmatch ="{{trans('loginland::modalauth.match')}}">
                         {{ csrf_field() }}
                         <div id="err_first_pass" style="text-align: center; color: red;"></div>
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">

@@ -187,11 +187,11 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
 <script src="/packages/wbe/loginland/assets/js/jquery.validate.js"></script>
-<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
+{{--<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>--}}
 <script src="/packages/wbe/loginland/assets/js/auth.js"></script>
-<script type="text/javascript">
-    FB.init({appId: "{{ env('fb_client_id') }}", status: true, cookie: true, xfbml: true});
-</script>
+{{--<script type="text/javascript">--}}
+    {{--FB.init({appId: "{{ env('fb_client_id') }}", status: true, cookie: true, xfbml: true});--}}
+{{--</script>--}}
 <!-- <script src="/js/auth_old.js"></script> -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
