@@ -91,7 +91,10 @@ button:
 ```
 in the end of layout
 ```
+@guest
 @include('loginland::auth.authModal')
+@endguest
+@yield('styles')
 @yield('scripts')
 ```
 Migrations will create tables and fill it with default data.
