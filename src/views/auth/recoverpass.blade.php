@@ -55,7 +55,7 @@
         <div class="modal-backdrop fade in"></div>
 @endsection
 
-@section('scritps')
+@section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
 <script src="/packages/wbe/loginland/assets/js/jquery.validate.js"></script>
 <script src="/packages/wbe/loginland/assets/js/auth.js"></script>
