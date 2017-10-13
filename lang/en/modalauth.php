@@ -21,6 +21,7 @@ return [
     'err_pass' => "Passwords must be at least six characters",
     'user' => "We can't find a user with that e-mail address.",
     'sentEmail' => 'We have e-mailed your password reset link!',
+    'already_recovered' => 'Your password has already been restored!',
 ////////////////////////////////////////////////////////////
 
 

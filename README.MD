@@ -85,9 +85,14 @@ composer dump-autoload
 ```
 
 7. In blade you need put 
+button:
 ```
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#head_auth">Login\Register</button>
+```
+in the end of layout
+```
 @include('loginland::auth.authModal')
+@yield('scripts')
 ```
 Migrations will create tables and fill it with default data.
 It also contains data insertions into database (like seeding). 

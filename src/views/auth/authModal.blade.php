@@ -1,8 +1,9 @@
+@section('style')
 <link rel="stylesheet" href="/packages/wbe/loginland/assets/css/auth.css">
-<link rel="stylesheet" href="/packages/wbe/loginland/assets/css/app.css">
+{{--<link rel="stylesheet" href="/packages/wbe/loginland/assets/css/app.css">--}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
-
+@endsection
 <div id="head_auth" class="modal fade" role="dialog">
     <div class="modal-dialog" style="width: 1000px;">
 	{{--{!!dump(Auth::user())!!}--}}
@@ -184,11 +185,11 @@
     </div>
 </div>
 
-
+@section('scritps')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
 <script src="/packages/wbe/loginland/assets/js/jquery.validate.js"></script>
-{{--<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>--}}
 <script src="/packages/wbe/loginland/assets/js/auth.js"></script>
+{{--<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>--}}
 {{--<script type="text/javascript">--}}
     {{--FB.init({appId: "{{ env('fb_client_id') }}", status: true, cookie: true, xfbml: true});--}}
 {{--</script>--}}
@@ -288,3 +289,4 @@
     }
 
 </script>
+@endsection

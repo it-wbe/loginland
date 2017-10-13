@@ -156,7 +156,7 @@ class AuthAjaxController extends Controller
             return view($recover_pass_blade)->with(['token' => $token]);
 
         } else {
-            return view($recover_pass_blade)->with(['token' => $token]);
+            return redirect(404);
         }
 
     }
@@ -168,7 +168,7 @@ class AuthAjaxController extends Controller
             'password_confirmation' => 'min:6|max:255|',
         ]);
         if ($validator->fails()) {
-            return collect(['err'], __('modalauth.err_pass'));
+            return collect(['err'], __('loginland::modalauth.err_pass'));
         }
 
         if(\Auth::check())return redirect('/');
@@ -177,10 +177,12 @@ class AuthAjaxController extends Controller
         $conf_password = $request->password_confirmation;
 
         if ($password != $conf_password) {
-            return collect(['err', __('modalauth.match')]);
+            return collect(['err', __('loginland::modalauth.match')]);
         }
         $searchToken = \DB::table('password_resets')->where('token', $token)->first();
-
+        if(is_null($searchToken)){
+            return collect(['err',__('loginland::modalauth.already_recovered')]);
+        }
         $user = User::where('email', $searchToken->email)->first();
         $user->password = bcrypt($password);
         $user->save();

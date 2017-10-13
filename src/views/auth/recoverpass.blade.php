@@ -1,15 +1,11 @@
 @extends('layouts.app')
-
 @section('content')
-
         <div class="modal-dialog" style="max-width: 800px; z-index:99999;"">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-
                     <h4 style="text-align: center">Password recovery</h4>
                     <form class="form-horizontal" role="form" name="auth_form_post_recover_pass" id="auth_form_post_recover_pass" method="POST" action="#" data-token = "{{$token}}"  data-errpass = "{{trans('loginland::modalauth.err_pass')}}" data-errorepassmatch ="{{trans('loginland::modalauth.match')}}">
                         {{ csrf_field() }}
@@ -50,12 +46,6 @@
                         </div>
 
                     </form>
-
-
-
-
-
-
                 <div class="modal-footer">
 
                 </div>
@@ -63,4 +53,10 @@
 
         </div>
         <div class="modal-backdrop fade in"></div>
+@endsection
+
+@section('scritps')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
+<script src="/packages/wbe/loginland/assets/js/jquery.validate.js"></script>
+<script src="/packages/wbe/loginland/assets/js/auth.js"></script>
 @endsection

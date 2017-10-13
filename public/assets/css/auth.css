@@ -4,10 +4,13 @@
     box-sizing: border-box;
     padding: 5px 5px;
 }
-.modal-backdrop {
-    z-index: -1;
-}
 
+.modal-backdrop {
+    z-index: 1050;
+}
+#head_auth{
+    z-index: 1090;
+}
 
 .share-btn {
     display: inline-block;
