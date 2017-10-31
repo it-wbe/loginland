@@ -1,15 +1,33 @@
 <?php
 
 return [
-'vk_client_id'=>'6043634',
-'vk_client_secret'=>'XvXiOfSJSJqRIfKMTYps',
-'vk_redirect_uri'=>'http://front-end.g4.org.ua/callback/vk',
+    'fb_client_id'=>'',
+    'fb_client_secret'=>'',
+    'fb_redirect_uri'=>'',
 
-'fb_client_id'=>'432622193776871',
-'fb_client_secret'=>'2fee0c9c99ea33449ad6735d197e20d2',
-'fb_redirect_uri'=>'http://front-end.g4.org.ua/callback/facebook',
+    'google_client_id'=>'',
+    'google_client_secret'=>'',
+    'google_redirect_uri'=>'',
 
-'google_client_id'=>'304855283227-jehj1ufk6l99of5f7nv781f5an7il8cf.apps.googleusercontent.com',
-'google_client_secret'=>'UoffdY6Mh-9vETg-Pn9Wy5yB',
-'google_redirect_uri'=>'http://front-end.g4.org.ua/callback/google',
+
+
+    'confirm_registration_email' => env('confirm_registration_email',1),
+    /// blade for letter to activate user
+    'email_registration_activate'=>'',
+    /// blade for letter hello
+    'email_registration_hello'=>'',
+
+    /// user edit password blade
+    'user_edit_pass'=>'',
+
+    // user edit profile blade
+    'user_edit_prof'=>'',
+
+
+    'redirect_after_activated'=>'/',
+
+
+    /// email
+    'email_from'=>'company@gmail.com',
+    'email_name'=>'COMPANY',
 ];

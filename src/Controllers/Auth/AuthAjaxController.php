@@ -4,8 +4,10 @@ namespace Wbe\Loginland\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use App\User;
-use Auth;
+//use App\User;
+
+use Wbe\Loginland\Auth;
+use Wbe\Loginland\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -48,24 +50,21 @@ class AuthAjaxController extends Controller
         $user->name = $data['name'];
         $user->email = $data['email'];
         $user->password = bcrypt($data['password']);
-        $user->save();
 
-        $email = $data['email'];
-        $name = $data['name'];
-
-        if(view()->exists('emails.registration')){
-            $view_email  = 'emails.registration';
+        ///// confirm registration
+        if(config('login.confirm_registration_email')==1) {
+            $user->active = 0;
+            $user->active_tocken = str_random(255);
+                /////need testing this sheet :)
+                 $this->sendEmail($user,'confirm');
+            $user->save();
         }else{
-            $view_email = 'loginland::emails.registration';
-        }
-        if (\Auth::loginUsingId($user->id, true)) {
-
-            /////need testing this sheet :)
-            Mail::send($view_email, ['user' => $user], function ($message) use ($name, $email) {
-                $message->from('test@email.com', 'Test name');
-                $message->to($email, $name)->subject('Wellcome!');
-            });
-            return '';
+            $user->active = 1;
+            // send hello email
+            if (\Auth::loginUsingId($user->id, true)) {
+                $this->sendEmail($user ,'hello');
+            }
+            $user->save();
         }
     }
 
@@ -78,13 +77,58 @@ class AuthAjaxController extends Controller
         ]);
     }
 
-    public function postRegistration(Request $request)
+    protected function sendEmail($user,$type){
+        switch ($type){
+            case 'hello':
+                if (view()->exists(config('login.email_hello'))) {
+                    $view_email = config('login.email_hello');
+                } else {
+                    $view_email = 'loginland::emails.registration';
+                }
+                $subject = __('login.welcome');
+                if($subject == 'login.welcome'){
+                    $subject = __('loginland::login.welcome');
+                }
+
+                break;
+            case 'confirm':
+                if (view()->exists(config('login.email_registration_activate'))) {
+                    $view_email = config('login.email_registration_activate');
+                } else {
+                    $view_email = 'loginland::emails.registration_activate';
+                }
+                $subject = __('login.activate_account');
+                if($subject == 'login.activate_account'){
+                    $subject = __('loginland::login.activate_account');
+                }
+                break;
+        }
+
+        Mail::send($view_email, ['user' => $user], function ($message) use ($user,$subject) {
+            $message->from(config('login.email_from'), config('login.email_name'));
+            $message->to($user->email, $user->name)->subject($subject);
+        });
+    }
+
+    public function postRegistration()
     {
-        $validation = $this->validator($request->all());
+        $validation = $this->validator(request()->all());
         if ($validation->fails()) {
             return response()->json($validation->errors()->toArray());
         } else {
-            $this->create($request->all());
+            if(config('login.confirm_registration_email')==1){
+                $this->create(request()->all());
+
+                $message =  __('login.activate_email_message');
+                if($message == 'login.activate_email_message'){
+                    $message = __('loginland::login.activate_email_message');
+                }
+                return response()->json(["message"=>$message,'confirm'=>'1']);
+            }else{
+                $this->create(request()->all());
+                return response()->json(['confirm'=>'0']);
+            }
+
         }
     }
 
@@ -139,6 +183,26 @@ class AuthAjaxController extends Controller
         }
 
     }
+
+    public function getTocken($tocken){
+       $user =  User::where('active_tocken','=',$tocken)->first();
+//       dd($user);
+        if($user){
+            $user->active = 1;
+            $user->active_tocken = "";
+            $user->save();
+            if (\Auth::loginUsingId($user->id, true)){
+                $this->sendEmail($user,'hello');
+                return    redirect(config('login.redirect_after_activated'));
+            }
+        }
+        else{
+            return redirect(404);
+        }
+    }
+
+
+
 
     public function resetpass($token)
     {

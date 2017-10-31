@@ -147,7 +147,7 @@
                         <div id="recover_email_success" style="color: green;"></div>
                     </center>
                     <form class="form-horizontal" role="form" id="post_form_recover_pass" name="post_form_recover_pass" method="POST"
-                          action="{{ route('password.email') }}" data-errmail="{{trans('loginland::modalauth.email')}}">
+                           data-errmail="{{trans('loginland::modalauth.email')}}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ isset($errors)&&$errors->has('email') ? ' has-error' : '' }}">
@@ -185,6 +185,8 @@
     </div>
 </div>
 
+
+
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
 <script src="/packages/wbe/loginland/assets/js/jquery.validate.js"></script>
@@ -220,7 +222,7 @@
         var a = 0;
         var pollTimer   =   window.setInterval(function() {
             try {
-                console.log(win.document.URL.indexOf(window.location.hostname));
+//                console.log(win.document.URL.indexOf(window.location.hostname));
 
                 if(win.document.URL.indexOf(window.location.hostname)==7){
                     window.clearInterval(pollTimer);
@@ -233,10 +235,9 @@
                     location.reload();
 
                 }
-
                 a++;
             } catch(e) {
-                console.log(win.document.URL.indexOf(window.location.hostname));
+//                console.log(win.document.URL.indexOf(window.location.hostname));
             }
         }, 500);
     }
@@ -255,19 +256,6 @@
         });
     }
 
-    function getUserInfo() {
-        $.ajax({
-            url: 'https://www.googleapis.com/oauth2/v1/userinfo?access_token=' + acToken,
-            data: null,
-            success: function(resp) {
-                user    =   resp;
-                console.log(user);
-                $('#uName').text('Welcome ' + user.name);
-                $('#imgHolder').attr('src', user.picture);
-            },
-            dataType: "jsonp"
-        });
-    }
 
     function gup(url, name) {
         name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
@@ -278,14 +266,6 @@
             return "";
         else
             return results[1];
-    }
-
-    function startLogoutPolling() {
-        $('#loginText').show();
-        $('#logoutText').hide();
-        loggedIn = false;
-        $('#uName').text('Welcome ');
-        $('#imgHolder').attr('src', 'none.jpg');
     }
 
 </script>

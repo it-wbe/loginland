@@ -3,16 +3,7 @@ Laravel popup login form with service google facebook integration
 
 ### Install in Laravel 5.5
 
-1. you need to inser in to console when you are in project folder
-
-```php
-
-php artisan make:auth
-
-```
-
-
-2. Create facebook google oauth connect api keys
+1. Create facebook google oauth connect api keys
 
 ```php
 
@@ -29,7 +20,7 @@ facebook
 http://developers.facebook.com
 
 ````
-3. add to env 
+2. add to env 
 
 ```php
 
@@ -46,7 +37,7 @@ google_redirect_uri=<http://domain_name>/callback/google
 
 ```
 
-4. Add to config/app.php:
+3. Add to config/app.php:
 
 ```php
 'providers' => [
@@ -58,7 +49,7 @@ google_redirect_uri=<http://domain_name>/callback/google
 	'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 ```
 
-5. Add to config/service
+4. Add to config/service
 
 ```php
 	
@@ -76,7 +67,7 @@ google_redirect_uri=<http://domain_name>/callback/google
 ```
 
      
-6. Run into console:
+5. Run into console:
 
 ```ssh
 php artisan vendor:publish --provider="Wbe\Loginland\LoginServiceProvider"
@@ -84,20 +75,76 @@ php artisan migrate
 composer dump-autoload
 ```
 
-7. In blade you need put 
+6. In blade you need put 
 button:
 ```
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#head_auth">Login\Register</button>
 ```
+
+```
+  <button type="button" class="btn btn-info " data-toggle="modal" data-target="#profile_edit">Edit profile</button>
+  <button type="button" class="btn btn-info " data-toggle="modal" data-target="#password_edit">Edit password</button>
+                     
+```
 in the end of layout
 ```
-@guest
-@include('loginland::auth.authModal')
-@endguest
-@yield('styles')
-@yield('scripts')
+			@guest
+            @include('loginland::auth.authModal')
+            @else
+                @include('loginland::account.account')
+                @endguest
+                @yield('styles')
+                @yield('scripts')
 ```
+ login register popup
+ 
+@include('loginland::auth.authModal')
+
+edit password profile popup
+@include('loginland::account.account')
+                	
+
 Migrations will create tables and fill it with default data.
-It also contains data insertions into database (like seeding). 
+
+
+	language files  
+	message to activate account by email
+
+	login.activate_email_message
+
+
+	configuration  login
+	```
+	1  - confirm registretion by email
+	0  - disable confirm 
+	```
+	default 1
+```
+    'confirm_registration_email' => env('confirm_registration_email',1),
+```
+     blade for letter to activate user
+```   
+   'email_registration_activate'=>'',
+```
+     blade for letter hello
+```   
+   'email_registration_hello'=>'',
+```
+     user edit password blade
+```  
+  'user_edit_pass'=>'',
+```
+     user edit profile blade
+```   
+   'user_edit_prof'=>'',
+```
+	
+	where redirect after user activate account
+```
+	'redirect_after_activated'=>'/',
+```
+	
+    'activate_account_blade'=>'',
+
 
 ---------

@@ -55,6 +55,21 @@ class RegisterController extends Controller
         ]);
     }
 
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        if(config('confirm_registration_email')==1){
+            $this->guard()->login($user);
+        }
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -68,5 +83,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+
     }
 }
