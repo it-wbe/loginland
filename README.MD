@@ -77,17 +77,17 @@ composer dump-autoload
 
 6. In blade you need put 
 button:
-```
+```php
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#head_auth">Login\Register</button>
 ```
 
-```
+```php
   <button type="button" class="btn btn-info " data-toggle="modal" data-target="#profile_edit">Edit profile</button>
   <button type="button" class="btn btn-info " data-toggle="modal" data-target="#password_edit">Edit password</button>
                      
 ```
 in the end of layout
-```
+```php
 			@guest
             @include('loginland::auth.authModal')
             @else
@@ -97,11 +97,13 @@ in the end of layout
                 @yield('scripts')
 ```
  login register popup
- 
+```php 
 @include('loginland::auth.authModal')
-
+```
 edit password profile popup
+```php
 @include('loginland::account.account')
+```
                 	
 
 Migrations will create tables and fill it with default data.
@@ -109,42 +111,39 @@ Migrations will create tables and fill it with default data.
 
 	language files  
 	message to activate account by email
-
+```php
 	login.activate_email_message
-
+```
 
 	configuration  login
-	```
+	```php
 	1  - confirm registretion by email
 	0  - disable confirm 
 	```
 	default 1
-```
+```php
     'confirm_registration_email' => env('confirm_registration_email',1),
 ```
      blade for letter to activate user
-```   
+```php   
    'email_registration_activate'=>'',
 ```
      blade for letter hello
-```   
+```php   
    'email_registration_hello'=>'',
 ```
      user edit password blade
-```  
+```php  
   'user_edit_pass'=>'',
 ```
      user edit profile blade
-```   
+```php   
    'user_edit_prof'=>'',
 ```
 	
 	where redirect after user activate account
-```
+```php
 	'redirect_after_activated'=>'/',
 ```
-	
-    'activate_account_blade'=>'',
-
 
 ---------
