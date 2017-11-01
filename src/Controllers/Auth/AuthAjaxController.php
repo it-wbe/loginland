@@ -56,13 +56,13 @@ class AuthAjaxController extends Controller
             $user->active = 0;
             $user->active_tocken = str_random(255);
                 /////need testing this sheet :)
-                 $this->sendEmail($user,'confirm');
+            AuthAjaxController::sendEmail($user,'confirm');
             $user->save();
         }else{
             $user->active = 1;
             // send hello email
             if (\Auth::loginUsingId($user->id, true)) {
-                $this->sendEmail($user ,'hello');
+                AuthAjaxController::sendEmail($user ,'hello');
             }
             $user->save();
         }
@@ -77,7 +77,7 @@ class AuthAjaxController extends Controller
         ]);
     }
 
-    protected function sendEmail($user,$type){
+    public static function sendEmail($user,$type){
         switch ($type){
             case 'hello':
                 if (view()->exists(config('login.email_hello'))) {
@@ -161,8 +161,6 @@ class AuthAjaxController extends Controller
                     }else{
                         $view_reset_pass = 'loginland::emails.resetpassword';
                     }
-
-
                     Mail::send($view_reset_pass, ['user' => $user, 'token' => $token], function ($message) use ($contactfirstname, $contactemail) {
                         $message->from('name@email.com', 'Reset password');
                         $message->to($contactemail, $contactfirstname)->subject('Reset Password!');
@@ -192,7 +190,7 @@ class AuthAjaxController extends Controller
             $user->active_tocken = "";
             $user->save();
             if (\Auth::loginUsingId($user->id, true)){
-                $this->sendEmail($user,'hello');
+                AuthAjaxController::sendEmail($user,'hello');
                 return    redirect(config('login.redirect_after_activated'));
             }
         }

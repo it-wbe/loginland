@@ -3,6 +3,7 @@
 namespace Wbe\Loginland;
 
 use Laravel\Socialite\Contracts\User as ProviderUser;
+use Wbe\Loginland\Controllers\Auth\AuthAjaxController as AuthAjaxController;
 
 class SocialAccountService
 {
@@ -25,14 +26,15 @@ class SocialAccountService
             $user = User::whereEmail($providerUser->getEmail())->first();
 
             if (!$user) {
-
                 $user = User::create([
                     'email' => $providerUser->getEmail(),
                     'name' => $providerUser->getName(),
                     'password' => bcrypt(time()),
+                    'active'=>1,
                 ]);
             }
 
+            AuthAjaxController::sendEmail($user,'hello');
             $account->user()->associate($user);
             $account->save();
 
