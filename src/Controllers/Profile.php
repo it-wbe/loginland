@@ -44,7 +44,7 @@ class Profile extends Controller
             return response()->json($validator->errors()->toArray());
         }
         $user = Auth::user();
-        $user->password = request('password');
+        $user->password = bcrypt(request('password'));
         $user->save();
         return response()->json(['ok'=>'1']);
     }
